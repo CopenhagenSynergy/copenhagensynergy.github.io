@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Copenhagen Synergy</title>
+<meta name="description" content="Tools and live information from Copenhagen Capacity, the investment promotion agency for Greater Copenhagen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090446'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232B757C' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#090446;--teal:#2B757C;--bg:#fff;--fg:#1b1b2f;--muted:#5d6070;--line:#e4e6ee;--card:#f6f7fb;--hero:#090446;--hero-fg:#fff;--hero-muted:#c9c8e6;--chip:#e6f1f2}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0c1f;--fg:#ecedf5;--muted:#a3a6ba;--line:#26264a;--card:#15143a;--navy:#c9c8ff;--teal:#5fb3ba;--hero:#15143a;--hero-muted:#a3a6ba;--chip:#1d3a3e}}
+:root[data-theme=dark]{--bg:#0d0c1f;--fg:#ecedf5;--muted:#a3a6ba;--line:#26264a;--card:#15143a;--navy:#c9c8ff;--teal:#5fb3ba;--hero:#15143a;--hero-muted:#a3a6ba;--chip:#1d3a3e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Montserrat,system-ui,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:'IBM Plex Serif',Georgia,serif;line-height:1.2;margin:0}
+header{background:var(--hero);color:var(--hero-fg)}
+header .wrap{padding-top:22px;padding-bottom:56px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;color:var(--hero-muted)}
+.brand svg{flex:none}
+header h1{font-size:clamp(2rem,5vw,3rem);margin:48px 0 12px;color:#fff}
+header p{max-width:640px;margin:0;color:var(--hero-muted);font-size:1.05rem}
+main .wrap{padding-top:40px;padding-bottom:64px}
+h2{font-size:1.3rem;color:var(--navy);margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:inherit;text-decoration:none;transition:border-color .15s,transform .15s}
+a.card:hover{border-color:var(--teal);transform:translateY(-2px)}
+a.card:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.card h3{font-size:1.15rem;color:var(--navy)}
+.card p{margin:0;color:var(--muted);font-size:.92rem}
+.card .go{margin-top:auto;padding-top:6px;font-weight:600;font-size:.9rem;color:var(--teal)}
+.card.soon{background:var(--card);border-style:dashed}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--teal)}
+.tag.live::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:currentColor;vertical-align:1px}
+.tag.muted{background:var(--line);color:var(--muted)}
+.about{margin-top:48px;padding:20px 22px;border-left:3px solid var(--teal);background:var(--card);border-radius:0 12px 12px 0}
+.about p{margin:0;color:var(--muted);font-size:.92rem}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:20px;padding-bottom:32px;font-size:.8rem;color:var(--muted)}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand"><svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".12"/><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"/></svg>Copenhagen Capacity</div>
+  <h1>Copenhagen Synergy</h1>
+  <p>Tools and live information from Copenhagen Capacity, the investment promotion agency for Greater Copenhagen. Maintained with the Copenhagen Synergy AI.</p>
+</div></header>
+
+<main><div class="wrap">
+  <h2>Pages</h2>
+  <div class="grid">
+    <!-- To add a page: copy a card. Live pages are <a class="card" href="...">, coming pages are <div class="card soon">. -->
+    <a class="card" href="https://copenhagensynergy.github.io/copcap-events/">
+      <div class="tags"><span class="tag live">Live</span><span class="tag">Public</span></div>
+      <h3>Eastern Denmark Business Events</h3>
+      <p>Upcoming conferences and business events in Copenhagen and Eastern Denmark, checked against each organiser's website. Filter by country, sort by date, sector or CopCap team, and subscribe in your own calendar.</p>
+      <span class="go">Open the calendar →</span>
+    </a>
+
+    <div class="card soon">
+      <div class="tags"><span class="tag muted">Coming soon</span><span class="tag muted">Internal</span></div>
+      <h3>Investment Promotion Deal Dashboard</h3>
+      <p>Live overview of Investment Promotion deals and pipeline.</p>
+    </div>
+
+    <div class="card soon">
+      <div class="tags"><span class="tag muted">Coming soon</span><span class="tag muted">Internal</span></div>
+      <h3>Lead Signals Monitor</h3>
+      <p>New leads picked up by the CopCap Lead Signals Monitor.</p>
+    </div>
+
+    <div class="card soon">
+      <div class="tags"><span class="tag muted">More on the way</span></div>
+      <h3>More pages</h3>
+      <p>New tools and pages will be added here as they are developed.</p>
+    </div>
+  </div>
+
+  <div class="about"><p>Copenhagen Capacity helps foreign companies set up and grow in Greater Copenhagen. Read more at <a href="https://www.copcap.com" style="color:var(--teal)">copcap.com</a>.</p></div>
+</div></main>
+
+<footer><div class="wrap">Copenhagen Capacity · Havneholmen 29, DK-1561 Copenhagen V · <a href="https://www.copcap.com">copcap.com</a></div></footer>
+</body>
+</html>
