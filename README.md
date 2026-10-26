@@ -15,4 +15,5 @@ Everything on this site is public. Internal pages (deal data, leads) must live b
 
 ## Related
 
+- Menu: the top bar (`nav.top`) is repeated in `copcap-events/scripts/build_site.py`; add new pages to both.
 - Events calendar: https://github.com/CopenhagenSynergy/copcap-events (served at `/copcap-events/`)
