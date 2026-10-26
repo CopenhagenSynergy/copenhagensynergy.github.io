@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Copenhagen Co-invest</title>
+<meta name="description" content="Copenhagen Co-invest — a Copenhagen Capacity program orchestrating co-investment between local seed investors and foreign capital, with the City as convening anchor.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090446'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232B757C' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#090446;--teal:#2B757C;--orange:#EB5E28;
+  --bg:#fff;--fg:#1b1b2f;--muted:#5d6070;--line:#e4e6ee;--card:#f6f7fb;--chip:#e6f1f2;
+  --hero:#090446;--hero-fg:#fff;--hero-muted:#c9c8e6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#0d0c1f;--fg:#ecedf5;--muted:#a3a6ba;--line:#26264a;--card:#15143a;--chip:#1d3a3e;
+  --navy:#c9c8ff;--teal:#5fb3ba;--hero:#15143a;--hero-muted:#a3a6ba;
+}}
+:root[data-theme=dark]{
+  --bg:#0d0c1f;--fg:#ecedf5;--muted:#a3a6ba;--line:#26264a;--card:#15143a;--chip:#1d3a3e;
+  --navy:#c9c8ff;--teal:#5fb3ba;--hero:#15143a;--hero-muted:#a3a6ba;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'IBM Plex Serif',Georgia,serif;line-height:1.14;margin:0;font-weight:600}
+em{font-style:italic}
+a{color:var(--teal)}
+
+/* ---- top bar ---- */
+.bar{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:10px 18px;background:color-mix(in srgb,var(--hero) 86%,transparent);backdrop-filter:blur(8px);
+  color:#fff;font-size:.82rem}
+.bar .home{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:.76rem}
+.bar .home:hover{text-decoration:underline}
+.bar .crumb{color:var(--hero-muted);font-weight:500}
+.bar .count{color:var(--hero-muted);font-variant-numeric:tabular-nums;font-weight:600}
+@media(max-width:620px){.bar .crumb{display:none}}
+
+/* ---- deck / slides ---- */
+.deck{scroll-snap-type:y proximity}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;
+  padding:92px clamp(20px,7vw,110px) 80px;position:relative}
+.inner{width:100%;max-width:1040px;margin:0 auto}
+.slide.navy{background:var(--hero);color:var(--hero-fg)}
+.slide.navy h1,.slide.navy h2,.slide.navy h3{color:#fff}
+.slide.alt{background:var(--card)}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 18px}
+.slide.navy .eyebrow{color:#7fd3da}
+h1.title{font-size:clamp(2.6rem,8vw,5.4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4.2vw,2.9rem);color:var(--navy)}
+.lead{font-size:clamp(1.15rem,2.4vw,1.7rem);line-height:1.4;max-width:30ch;margin:18px 0 0;color:var(--hero-muted)}
+.slide:not(.navy) .lead{color:var(--muted)}
+.statement{font-family:'IBM Plex Serif',Georgia,serif;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.7rem);line-height:1.28;max-width:20ch}
+.sub{margin-top:22px;font-size:1.02rem;max-width:56ch;color:var(--hero-muted)}
+.slide:not(.navy) .sub{color:var(--muted)}
+.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:.78rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--hero-muted);display:flex;align-items:center;gap:8px}
+.hint .dot{width:22px;height:34px;border:2px solid currentColor;border-radius:12px;position:relative;opacity:.8}
+.hint .dot::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:6px;background:currentColor;border-radius:2px;transform:translateX(-50%);animation:sc 1.5s infinite}
+@keyframes sc{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+
+/* ---- building blocks ---- */
+.cols{display:grid;gap:18px;margin-top:30px}
+.cols.three{grid-template-columns:repeat(3,1fr)}
+.cols.four{grid-template-columns:repeat(4,1fr)}
+.cols.two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:860px){.cols.three,.cols.four,.cols.two{grid-template-columns:1fr}}
+.box{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.slide.alt .box{background:var(--bg)}
+.slide.navy .box{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+.box h3{font-size:1.1rem;color:var(--navy);margin-bottom:6px}
+.slide.navy .box h3{color:#fff}
+.box p{margin:0;font-size:.92rem;color:var(--muted)}
+.slide.navy .box p{color:var(--hero-muted)}
+.box .k{font-family:'IBM Plex Serif',serif;font-size:1.6rem;color:var(--teal);display:block;margin-bottom:4px}
+.lacks{margin-top:10px;font-size:.82rem;color:var(--orange);font-weight:600}
+
+ul.clean{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px;max-width:62ch}
+ul.clean li{padding-left:30px;position:relative;font-size:1.05rem}
+ul.clean li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:12px;border-radius:50%;
+  border:3px solid var(--teal)}
+ul.clean li b{font-weight:600}
+
+/* flow / journey */
+.flow{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:stretch}
+.flow .step{flex:1 1 180px;padding:20px;border-radius:12px;background:var(--bg);border:1px solid var(--line);position:relative}
+.slide.navy .flow .step{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+.flow .step .n{font-family:'IBM Plex Serif',serif;font-size:.85rem;font-weight:600;color:var(--teal);letter-spacing:.1em;text-transform:uppercase}
+.flow .step h3{font-size:1.15rem;color:var(--navy);margin:6px 0 6px}
+.slide.navy .flow .step h3{color:#fff}
+.flow .step p{margin:0;font-size:.88rem;color:var(--muted)}
+.slide.navy .flow .step p{color:var(--hero-muted)}
+
+/* model diagram */
+.model{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin-top:30px}
+@media(max-width:860px){.model{grid-template-columns:1fr}}
+.model .side{display:grid;gap:12px}
+.hub{text-align:center;padding:26px 22px;border-radius:16px;background:var(--teal);color:#fff;min-width:200px}
+.hub .t{font-family:'IBM Plex Serif',serif;font-size:1.25rem;font-weight:600}
+.hub .s{font-size:.85rem;opacity:.9;margin-top:4px}
+.node{padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:.95rem}
+.slide.navy .node{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+.node b{color:var(--navy);display:block;font-size:1rem}
+.slide.navy .node b{color:#fff}
+.anchor{margin-top:18px;text-align:center}
+.anchor .node{display:inline-block;border-style:dashed;border-color:var(--teal)}
+.rule{margin-top:22px;font-size:.95rem;color:var(--muted);text-align:center}
+.slide.navy .rule{color:var(--hero-muted)}
+
+/* roles */
+.roles{display:grid;grid-template-columns:auto 1fr;gap:0 22px;margin-top:26px;max-width:80ch}
+.roles dt{font-weight:600;color:var(--navy);padding:11px 0;border-top:1px solid var(--line)}
+.roles dd{margin:0;padding:11px 0;color:var(--muted);border-top:1px solid var(--line);font-size:.95rem}
+@media(max-width:700px){.roles{grid-template-columns:1fr;gap:0}.roles dd{padding-top:0;border-top:0}.roles dt{border-top:1px solid var(--line);padding-bottom:2px}}
+
+.callout{margin-top:26px;padding:18px 22px;border-radius:12px;background:rgba(235,94,40,.12);
+  border-left:4px solid var(--orange);font-size:1.05rem;font-weight:500;max-width:60ch}
+.slide.navy .callout{background:rgba(235,94,40,.18)}
+
+.kpis{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.kpis span{padding:8px 14px;border-radius:999px;background:var(--chip);color:var(--teal);font-size:.86rem;font-weight:600}
+
+.contact{margin-top:26px;font-size:1.05rem}
+.contact a{font-weight:600}
+.backhome{margin-top:34px}
+.backhome a{display:inline-block;padding:11px 20px;border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
+.backhome a:hover{background:rgba(255,255,255,.1)}
+
+/* dot nav */
+.dots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:11px}
+.dots a{width:10px;height:10px;border-radius:50%;background:var(--line);border:1px solid var(--muted);opacity:.6;transition:.15s}
+.dots a:hover{opacity:1}
+.dots a.on{background:var(--teal);border-color:var(--teal);opacity:1;transform:scale(1.25)}
+@media(max-width:620px){.dots{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="home" href="https://copenhagensynergy.github.io/">
+    <svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"></rect><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"></circle></svg>
+    Copenhagen Synergy</a>
+  <span class="crumb">Copenhagen Co-invest</span>
+  <span class="count"><span id="cur">01</span> / 12</span>
+</div>
+
+<nav class="dots" aria-label="Slides">
+  <a href="#s1" class="on"></a><a href="#s2"></a><a href="#s3"></a><a href="#s4"></a><a href="#s5"></a><a href="#s6"></a><a href="#s7"></a><a href="#s8"></a><a href="#s9"></a><a href="#s10"></a><a href="#s11"></a><a href="#s12"></a>
+</nav>
+
+<main class="deck">
+
+  <!-- 1 -->
+  <section class="slide navy" id="s1">
+    <div class="inner">
+      <p class="eyebrow">Copenhagen Synergy · Copenhagen Capacity</p>
+      <h1 class="title">Copenhagen <em>Co-invest</em></h1>
+      <p class="lead">Where local conviction meets foreign capital — and the City anchors the deal.</p>
+    </div>
+    <div class="hint"><span class="dot"></span>Scroll · arrow keys</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2">
+    <div class="inner">
+      <p class="eyebrow">The opportunity</p>
+      <h2>Three strengths that never meet in one room</h2>
+      <div class="cols three">
+        <div class="box"><h3>Local seed investors</h3><p>Proprietary dealflow, founder trust, diligence on the ground.</p><p class="lacks">Lack follow-on firepower.</p></div>
+        <div class="box"><h3>Foreign investors</h3><p>Capital, sector depth, global scaling networks.</p><p class="lacks">Lack local sourcing &amp; trust.</p></div>
+        <div class="box"><h3>Public sector</h3><p>Real innovation needs, testbeds, reference-customer credibility.</p><p class="lacks">Lack a fast, compliant way to pull innovation in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide navy" id="s3">
+    <div class="inner">
+      <p class="eyebrow">The idea</p>
+      <p class="statement">Co-invest in curated Copenhagen opportunities, alongside a committed local lead, at a table the City convenes and curates.</p>
+      <p class="sub">Copenhagen Capacity orchestrates the process — holding no capital, charging no deal fee, picking no winners. That neutrality is exactly what makes the introduction worth trusting.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide alt" id="s4">
+    <div class="inner">
+      <p class="eyebrow">Guardrails are the product</p>
+      <h2>Four lines we never cross</h2>
+      <div class="cols four">
+        <div class="box"><span class="k">01</span><h3>Not a fund</h3><p>We orchestrate the process; we never hold or deploy capital.</p></div>
+        <div class="box"><span class="k">02</span><h3>Not a placement agent</h3><p>No success fee on capital raised — ever.</p></div>
+        <div class="box"><span class="k">03</span><h3>Not an adviser</h3><p>We verify facts; we do not recommend that anyone invest.</p></div>
+        <div class="box"><span class="k">04</span><h3>Not a procurement guarantor</h3><p>The City convenes and curates demand — it never promises a purchase.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5">
+    <div class="inner">
+      <p class="eyebrow">The model</p>
+      <h2>A three-sided table</h2>
+      <div class="model">
+        <div class="side">
+          <div class="node"><b>Local lead investor</b>Originates, co-leads, stays in the deal.</div>
+          <div class="node"><b>Foreign co-investors</b>Bring capital &amp; scaling networks.</div>
+        </div>
+        <div class="hub"><div class="t">Copenhagen Capacity</div><div class="s">curate · verify · convene · run the process</div></div>
+        <div class="side">
+          <div class="node"><b>The City &amp; public stakeholders</b>Convene and curate demand; lend standing.</div>
+          <div class="node"><b>Local advisers &amp; clusters</b>Run the sessions and the sector sprints.</div>
+        </div>
+      </div>
+      <p class="rule"><b>No orphan deals</b> — every opportunity on the table already has a named local lead in or committed.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide alt" id="s6">
+    <div class="inner">
+      <p class="eyebrow">How it works</p>
+      <h2>Identify → Develop → Place → Grow</h2>
+      <div class="flow">
+        <div class="step"><span class="n">01 Identify</span><h3>Sector sprints</h3><p>Cluster and ecosystem leaders surface 8–12 companies that already have a local investor and a real city-demand angle.</p></div>
+        <div class="step"><span class="n">02 Develop</span><h3>The table</h3><p>CopCap convenes local lead, foreign co-investors and the public demand owner. Invited law &amp; tax advisers run working sessions.</p></div>
+        <div class="step"><span class="n">03 Place</span><h3>The round</h3><p>Investors structure it themselves — side-by-side, SPV, pledge or direct. CopCap gives process and templates, not terms.</p></div>
+        <div class="step"><span class="n">04 Grow</span><h3>Aftercare</h3><p>Soft-landing, talent, entity setup and expansion — turning one deal into a lasting relationship.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide navy" id="s7">
+    <div class="inner">
+      <p class="eyebrow">The anchor</p>
+      <h2>The City <em>convenes and curates</em> — it does not buy</h2>
+      <ul class="clean">
+        <li><b>Chairs</b> the co-investment sessions, bringing curated companies and curated investors to one table.</li>
+        <li><b>Curates</b> which companies take part — selected by sector and the city's genuine need for their innovation.</li>
+        <li><b>Signals demand</b> and lends its standing; its commitment is to convene, not to purchase.</li>
+        <li>Any paid pilot that follows runs through a <b>compliant process</b> — innovation partnership, PCP, OPI or equal-terms testbed access.</li>
+      </ul>
+      <div class="callout">A demand signal and a credibility marker that de-risks go-to-market — not a guaranteed contract.</div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8">
+    <div class="inner">
+      <p class="eyebrow">Roles</p>
+      <h2>Who does what</h2>
+      <dl class="roles">
+        <dt>The City / public</dt><dd>Chairs sessions; curates companies by sector and city need; convenes and lends standing; makes no purchase commitment.</dd>
+        <dt>Sector clusters</dt><dd>Facilitate the origination sprints and co-curate dealflow in their field.</dd>
+        <dt>Local advisers</dt><dd>Law, tax and structuring firms deliver working sessions for investors and investees at the table.</dd>
+        <dt>Local VCs</dt><dd>Originate and co-lead; keep the lead and hands-on governance.</dd>
+        <dt>Foreign investors</dt><dd>Co-invest alongside the local lead; bring capital and scaling networks.</dd>
+        <dt>Copenhagen Capacity</dt><dd>Orchestrates: curates, verifies, convenes, runs the process and aftercare — no capital, no fee.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide alt" id="s9">
+    <div class="inner">
+      <p class="eyebrow">Structuring</p>
+      <h2>Transact fast, four ways</h2>
+      <div class="cols four">
+        <div class="box"><h3>Side-by-side</h3><p>Alongside the local lead, on the lead's terms. Simplest, lowest cost.</p></div>
+        <div class="box"><h3>SPV / syndicate</h3><p>Several foreign tickets under one cap-table line, run by a local admin.</p></div>
+        <div class="box"><h3>Pledge / opt-in</h3><p>Deal-by-deal discretion, no blind-pool commitment.</p></div>
+        <div class="box"><h3>Direct</h3><p>Large investors who want their own line.</p></div>
+      </div>
+      <p class="rule">CopCap maintains a vetted panel of Danish law, tax and fund-admin firms — introductions, not endorsements.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide navy" id="s10">
+    <div class="inner">
+      <p class="eyebrow">Trust</p>
+      <h2>Neutral by design</h2>
+      <ul class="clean">
+        <li>A <b>published, objective curation screen</b> — local lead present, sector fit, verifiable facts.</li>
+        <li>A <b>conflict register</b>; no CopCap board seats, no carry.</li>
+        <li><b>Information parity</b> — every investor at a table gets the same verified pack.</li>
+        <li>A documented <b>no-fee-on-capital</b> rule.</li>
+        <li>A <b>legal gate</b> — procurement &amp; state-aid sign-off on every public demand instrument.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11">
+    <div class="inner">
+      <p class="eyebrow">Roadmap</p>
+      <h2>From proof to platform</h2>
+      <div class="flow">
+        <div class="step"><span class="n">Phase 1 · Proof</span><h3>0–6 months</h3><p>One sector (health / life science), 10–15 foreign investors, one flagship city-convened deal, reusable legal templates built once.</p></div>
+        <div class="step"><span class="n">Phase 2 · Scale</span><h3>6–18 months</h3><p>Three sectors, tiered membership, the first Copenhagen Co-invest Summit, a reusable public-convening playbook.</p></div>
+        <div class="step"><span class="n">Phase 3 · Platform</span><h3>18 months +</h3><p>Standing syndicates, routine cross-border flows, the aftercare retention loop closing.</p></div>
+      </div>
+      <div class="kpis">
+        <span>Capital co-invested</span><span>Tables convened</span><span>Companies landed &amp; retained</span><span>Jobs created</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide navy" id="s12">
+    <div class="inner">
+      <p class="eyebrow">Next</p>
+      <h2>Let's build the first table</h2>
+      <p class="sub">Copenhagen Co-invest turns Copenhagen Capacity's neutral standing into a repeatable co-investment engine — local conviction, foreign capital, and a City that curates the demand.</p>
+      <p class="contact">Lars Lin Villebæk · Senior Investment Manager · Copenhagen Capacity<br><a href="mailto:llv@copcap.com">llv@copcap.com</a></p>
+      <p class="backhome"><a href="https://copenhagensynergy.github.io/">← Back to Copenhagen Synergy</a></p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var dots=[].slice.call(document.querySelectorAll('.dots a'));
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var cur=document.getElementById('cur');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var i=slides.indexOf(e.target);
+        dots.forEach(function(d,j){d.classList.toggle('on',j===i)});
+        if(cur)cur.textContent=('0'+(i+1)).slice(-2);
+      }
+    });
+  },{threshold:.55});
+  slides.forEach(function(s){io.observe(s)});
+  function go(d){
+    var i=dots.findIndex(function(x){return x.classList.contains('on')});
+    var n=Math.max(0,Math.min(slides.length-1,i+d));
+    slides[n].scrollIntoView({behavior:'smooth'});
+  }
+  document.addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(1);}
+    else if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){slides[0].scrollIntoView({behavior:'smooth'});}
+    else if(e.key==='End'){slides[slides.length-1].scrollIntoView({behavior:'smooth'});}
+  });
+})();
+</script>
+</body>
+</html>
