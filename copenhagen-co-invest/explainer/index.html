@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Copenhagen Co-invest — Explainer</title>
+<meta name="description" content="A ~90-second animated explainer for the Copenhagen Co-invest program, in Copenhagen Capacity's design system with Copenhagen visual motifs.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090446'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232B757C' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#090446;--navy2:#15143a;--teal:#2B757C;--teal-lt:#5fb3ba;--orange:#EB5E28;
+  --ink:#ecedf5;--muted:#a9abc4;--line:rgba(255,255,255,.14);--card:rgba(255,255,255,.06);
+  --water:#123a40;--sky:#0b0732;
+  /* Nyhavn façade palette */
+  --ny1:#e05a3a;--ny2:#f0b429;--ny3:#2B757C;--ny4:#c9c8ff;--ny5:#d64f6a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#05030f;color:var(--ink);font-family:Montserrat,system-ui,sans-serif;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:14px;padding:16px}
+h1,h2,h3,.serif{font-family:'IBM Plex Serif',Georgia,serif;font-weight:600;margin:0;line-height:1.1}
+em{font-style:italic}
+
+/* ---------- stage ---------- */
+.stage{position:relative;width:min(100%,calc((100vh - 120px)*16/9));aspect-ratio:16/9;
+  background:radial-gradient(130% 120% at 50% 0%,var(--navy2) 0%,var(--navy) 55%,var(--sky) 100%);
+  border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);
+  container-type:inline-size}
+.stage.clean{border-radius:0;box-shadow:none}
+
+/* persistent brand + progress chrome (hidden in clean mode) */
+.chrome{position:absolute;z-index:20;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;
+  padding:3.2cqw 3.6cqw;font-size:1.5cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);pointer-events:none}
+.chrome .brand{display:flex;align-items:center;gap:1cqw;color:#fff;font-weight:700}
+.chrome .brand svg{width:2.6cqw;height:2.6cqw}
+.chrome .scn{font-variant-numeric:tabular-nums}
+.progress{position:absolute;z-index:20;left:0;bottom:0;height:.5cqw;background:var(--teal);width:0;
+  box-shadow:0 0 12px var(--teal-lt)}
+.stage.clean .chrome{opacity:0}
+
+/* ---------- scenes ---------- */
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s ease}
+.scene.on{opacity:1;visibility:visible}
+.wrap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 7cqw}
+.eyebrow{font-size:1.55cqw;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.6cqw}
+.scene h1{font-size:8cqw;letter-spacing:-.01em}
+.scene h2{font-size:4.6cqw;color:#fff}
+.scene p.lead{font-size:2.2cqw;color:var(--muted);max-width:40cqw;margin-top:2cqw;line-height:1.4}
+
+/* reveal helpers — animate only while scene is .on */
+.r{opacity:0;transform:translateY(2.4cqw)}
+.scene.on .r{animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.scene.on .r.d1{animation-delay:.15s}.scene.on .r.d2{animation-delay:.35s}
+.scene.on .r.d3{animation-delay:.6s}.scene.on .r.d4{animation-delay:.9s}
+.scene.on .r.d5{animation-delay:1.2s}.scene.on .r.d6{animation-delay:1.6s}
+.scene.on .r.d7{animation-delay:2.1s}.scene.on .r.d8{animation-delay:2.6s}
+@keyframes rise{to{opacity:1;transform:none}}
+.fade{opacity:0}.scene.on .fade{animation:fin 1s ease forwards}
+@keyframes fin{to{opacity:1}}
+
+/* ---------- shared scenery ---------- */
+.sky-ring{position:absolute;right:9cqw;top:14cqw;width:11cqw;height:11cqw;opacity:0}
+.scene.on .sky-ring{animation:ringup 1.4s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes ringup{from{opacity:0;transform:translateY(5cqw) scale(.6)}to{opacity:1;transform:none}}
+
+/* water band */
+.water{position:absolute;left:0;right:0;bottom:0;height:26cqw;background:
+  linear-gradient(180deg,transparent,var(--water) 40%);}
+.wave{position:absolute;left:-10%;width:120%;height:5cqw;bottom:0;opacity:.5}
+.wave path{fill:none;stroke:var(--teal-lt);stroke-width:.4cqw;opacity:.5}
+.wave.w1{animation:drift 9s linear infinite}
+.wave.w2{bottom:2.4cqw;opacity:.25;animation:drift 13s linear infinite reverse}
+@keyframes drift{to{transform:translateX(-8.33%)}}
+
+/* city skyline silhouette strip */
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:16cqw}
+.skyline path{fill:var(--sky)}
+.skyline .lit{fill:var(--teal);opacity:0}
+.scene.on .skyline .lit{animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.8}}
+
+/* ---------- scene 1 — harbour / title ---------- */
+#sc1 .wrap{justify-content:flex-start;padding-top:9.5cqw}
+#sc1 .lead{max-width:56cqw}
+.houses{position:absolute;left:7cqw;bottom:5.5cqw;display:flex;align-items:flex-end;gap:1cqw}
+.house{width:6cqw;position:relative;transform:translateY(8cqw);opacity:0}
+.scene.on .house{animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
+.scene.on .house:nth-child(2){animation-delay:.12s}
+.scene.on .house:nth-child(3){animation-delay:.24s}
+.scene.on .house:nth-child(4){animation-delay:.36s}
+.scene.on .house:nth-child(5){animation-delay:.48s}
+.house .roof{height:1.6cqw;clip-path:polygon(0 100%,50% 0,100% 100%)}
+.house .body{height:9.5cqw;border-radius:.4cqw .4cqw 0 0;position:relative}
+.house .win{position:absolute;width:1.1cqw;height:1.5cqw;background:rgba(255,255,255,.75);border-radius:.2cqw}
+.boat{position:absolute;bottom:4.5cqw;left:-12cqw;width:9cqw;opacity:.9}
+.scene.on .boat{animation:sail 11s linear forwards}
+@keyframes sail{from{left:-14cqw}to{left:112cqw}}
+
+/* ---------- scene 2 — three strengths ---------- */
+#sc2 .wrap h2{max-width:74cqw;font-size:4.2cqw}
+.triad{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;gap:3.4cqw;padding:0 7cqw;padding-top:20cqw}
+.pillar{width:22cqw;max-width:22cqw;background:var(--card);border:.2cqw solid var(--line);border-radius:1.4cqw;
+  padding:2.2cqw 2cqw;text-align:center}
+.pillar .ic{width:6.6cqw;height:6.6cqw;margin:0 auto 1cqw}
+.pillar h3{font-size:2.5cqw;color:#fff}
+.pillar p{font-size:1.5cqw;color:var(--muted);margin:.8cqw 0 0;line-height:1.35}
+.pillar .lack{display:block;margin-top:1.4cqw;font-size:1.35cqw;font-weight:700;color:var(--orange)}
+.gap{align-self:center;color:var(--orange);font-size:4cqw;opacity:0}
+.scene.on .gap{animation:fin .6s ease .9s forwards}
+
+/* ---------- scene 3 — the bridge ---------- */
+.banks{position:absolute;inset:0}
+.bank{position:absolute;bottom:0;width:34cqw;height:15cqw;background:linear-gradient(180deg,var(--navy2),var(--sky))}
+.bank.l{left:0;border-radius:0 2cqw 0 0}.bank.r{right:0;border-radius:2cqw 0 0 0}
+.bank .tag{position:absolute;top:2.4cqw;width:100%;text-align:center;font-size:1.7cqw;font-weight:600;color:var(--muted)}
+.bridgeSVG{position:absolute;inset:0;width:100%;height:100%}
+.bridgeSVG .h2o{fill:var(--water);opacity:.55}
+.bridgeSVG .ripple{fill:none;stroke:var(--teal-lt);stroke-width:.4;opacity:.3}
+.bridgeSVG .deck{fill:none;stroke:var(--teal);stroke-width:2.4;stroke-linecap:round;
+  stroke-dasharray:170;stroke-dashoffset:170}
+.scene.on .bridgeSVG .deck{animation:draw 1.6s ease .3s forwards}
+.bridgeSVG .rail{fill:none;stroke:var(--teal-lt);stroke-width:1;opacity:0}
+.scene.on .bridgeSVG .rail{animation:fin .8s ease 1.4s forwards}
+.bridgeSVG .post{stroke:var(--teal-lt);stroke-width:.7;opacity:0}
+.scene.on .bridgeSVG .post{animation:fin .6s ease 1.7s forwards}
+.bridgeSVG .pier{stroke:var(--teal);stroke-width:2.6;stroke-linecap:round;opacity:0}
+.scene.on .bridgeSVG .pier{animation:fin .6s ease 1s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.bankt{position:absolute;font-size:1.8cqw;font-weight:600;color:var(--muted);opacity:0}
+.bankt.l{left:7cqw;bottom:15cqw}.bankt.r{right:7cqw;bottom:15cqw}
+.scene.on .bankt{animation:fin .8s ease 1.9s forwards}
+.cyc{position:absolute;bottom:19cqw;left:7cqw;width:4.4cqw;opacity:0}
+.scene.on .cyc{animation:cross 3.4s ease-in-out 1.9s forwards}
+@keyframes cross{0%{opacity:0;left:7cqw}12%{opacity:1}88%{opacity:1}100%{opacity:0;left:86cqw}}
+
+/* ---------- scene 4 — three-sided table ---------- */
+.table4{position:absolute;inset:0}
+.hub{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%) scale(.4);width:20cqw;height:20cqw;border-radius:50%;
+  background:radial-gradient(circle at 50% 40%,var(--teal-lt),var(--teal) 70%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;
+  box-shadow:0 0 0 1cqw rgba(95,179,186,.15),0 0 8cqw rgba(43,117,124,.6)}
+.scene.on .hub{animation:pop 1s cubic-bezier(.2,.8,.2,1) .3s forwards}
+@keyframes pop{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.hub .t{font-family:'IBM Plex Serif',serif;font-size:2.1cqw;color:#fff;line-height:1.05}
+.hub .s{font-size:1.15cqw;color:rgba(255,255,255,.9);margin-top:.6cqw;letter-spacing:.04em}
+.node4{position:absolute;width:19cqw;padding:1.5cqw 1.8cqw;background:var(--card);border:.2cqw solid var(--line);
+  border-radius:1.2cqw;text-align:center;opacity:0}
+.node4 b{display:block;color:#fff;font-size:1.9cqw;font-family:'IBM Plex Serif',serif}
+.node4 span{font-size:1.3cqw;color:var(--muted)}
+.node4.n1{left:50%;top:7%;transform:translateX(-50%)}
+.node4.n2{left:7%;bottom:9%}
+.node4.n3{right:7%;bottom:9%}
+.scene.on .node4.n1{animation:rise .8s ease 1s forwards}
+.scene.on .node4.n2{animation:rise .8s ease 1.3s forwards}
+.scene.on .node4.n3{animation:rise .8s ease 1.6s forwards}
+.spokes{position:absolute;inset:0;width:100%;height:100%}
+.spokes line{stroke:var(--teal-lt);stroke-width:.25cqw;opacity:0;stroke-dasharray:60;stroke-dashoffset:60}
+.scene.on .spokes line{animation:draw 1s ease 1.9s forwards,fin .4s ease 1.9s forwards}
+.table4 .note{position:absolute;left:0;right:0;bottom:3cqw;text-align:center;font-size:1.6cqw;color:var(--muted)}
+.spire{opacity:.9}
+
+/* ---------- scene 5 — journey ---------- */
+.journey{position:absolute;inset:0}
+.road{position:absolute;left:0;right:0;bottom:9cqw;height:.5cqw;background:var(--line)}
+.road .fill{height:100%;width:0;background:var(--teal);box-shadow:0 0 10px var(--teal-lt)}
+.scene.on .road .fill{animation:fillroad 11s linear .4s forwards}
+@keyframes fillroad{to{width:100%}}
+.stops{position:absolute;left:0;right:0;bottom:9cqw;display:flex;justify-content:space-between;padding:0 6cqw}
+.stop{text-align:center;width:19cqw;opacity:.3;transition:opacity .4s}
+.stop.hot{opacity:1}
+.stop .dot{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--navy2);border:.35cqw solid var(--teal);margin:0 auto 1cqw;
+  transform:translateY(1.05cqw)}
+.stop.hot .dot{background:var(--teal);box-shadow:0 0 2cqw var(--teal-lt)}
+.stop .n{font-size:1.4cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-lt);font-weight:700}
+.stop h3{font-size:2.3cqw;color:#fff;margin:.5cqw 0 .4cqw}
+.stop p{font-size:1.3cqw;color:var(--muted);margin:0;line-height:1.3}
+.rider{position:absolute;bottom:10.4cqw;left:8cqw;width:5cqw;opacity:0}
+.scene.on .rider{animation:ride 11s linear .4s forwards}
+@keyframes ride{0%{opacity:0;left:8cqw}4%{opacity:1}96%{opacity:1;left:88cqw}100%{opacity:0;left:92cqw}}
+
+/* ---------- scene 6 — neutral ---------- */
+.neutral{position:absolute;inset:0}
+.checks{position:absolute;left:7cqw;top:37%;display:grid;gap:1.8cqw;max-width:52cqw}
+.check{display:flex;align-items:center;gap:1.6cqw;opacity:0;transform:translateX(-2cqw)}
+.scene.on .check{animation:slidein .7s ease forwards}
+.scene.on .check:nth-child(1){animation-delay:.3s}
+.scene.on .check:nth-child(2){animation-delay:.7s}
+.scene.on .check:nth-child(3){animation-delay:1.1s}
+.scene.on .check:nth-child(4){animation-delay:1.5s}
+@keyframes slidein{to{opacity:1;transform:none}}
+.check .mk{flex:0 0 auto;width:3.4cqw;height:3.4cqw;border-radius:50%;background:rgba(95,179,186,.18);
+  display:flex;align-items:center;justify-content:center}
+.check .mk svg{width:1.9cqw;height:1.9cqw}
+.check span{font-size:2cqw;color:#fff}
+
+/* ---------- scene 7 — roadmap + end ---------- */
+.turbines{position:absolute;left:0;right:0;bottom:12cqw;height:24cqw}
+.turb{position:absolute;bottom:0;transform-origin:bottom center}
+.turb .mast{position:absolute;left:50%;bottom:0;width:.5cqw;height:14cqw;background:var(--muted);transform:translateX(-50%);opacity:.7}
+.turb .hub2{position:absolute;left:50%;top:0;width:7cqw;height:7cqw;transform:translate(-50%,-50%);animation:spin 6s linear infinite}
+.turb.t1{left:16%}.turb.t2{left:40%;transform:scale(1.2)}.turb.t3{left:66%;transform:scale(.9)}.turb.t4{left:84%;transform:scale(1.05)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.phases{position:absolute;left:0;right:0;bottom:7cqw;display:flex;justify-content:center;gap:3cqw;font-size:1.5cqw;color:var(--muted)}
+.phases b{color:var(--teal-lt)}
+.endcard{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(120% 100% at 50% 50%,rgba(9,4,70,.2),rgba(5,3,15,.85));opacity:0}
+.scene.on .endcard{animation:fin 1.2s ease 4.4s forwards}
+.endcard h2{font-size:5.2cqw}
+.endcard .kick{font-size:2cqw;color:var(--muted);margin-top:1.6cqw}
+.endcard .mail{margin-top:2cqw;font-size:1.9cqw;color:var(--teal-lt);font-weight:600}
+
+/* ---------- controls (outside stage) ---------- */
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+button{font:inherit;font-size:.86rem;font-weight:600;color:#fff;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:9px 18px;cursor:pointer;transition:.15s}
+button:hover{background:var(--teal);border-color:var(--teal)}
+.hint{color:var(--muted);font-size:.78rem;max-width:640px;text-align:center;line-height:1.5}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* embed mode: fill an iframe, drop external chrome (?embed=1) */
+body.embed{padding:0;gap:0;min-height:0;height:100vh}
+body.embed .stage{width:100%;height:100%;max-width:none;border-radius:0;box-shadow:none;aspect-ratio:auto}
+body.embed .bar,body.embed .hint{display:none}
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <div class="chrome">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"/></svg>Copenhagen Co-invest</span>
+    <span class="scn" id="scn">01 / 07</span>
+  </div>
+
+  <!-- ===== SCENE 1 — harbour / title ===== -->
+  <section class="scene" data-dur="9000" id="sc1">
+    <div class="water">
+      <svg class="wave w1" viewBox="0 0 120 10" preserveAspectRatio="none"><path d="M0 6 Q 10 2 20 6 T 40 6 T 60 6 T 80 6 T 100 6 T 120 6"/></svg>
+      <svg class="wave w2" viewBox="0 0 120 10" preserveAspectRatio="none"><path d="M0 6 Q 10 2 20 6 T 40 6 T 60 6 T 80 6 T 100 6 T 120 6"/></svg>
+    </div>
+    <div class="houses">
+      <div class="house"><div class="roof" style="background:var(--ny1)"></div><div class="body" style="background:var(--ny1)"><span class="win" style="left:1cqw;top:2cqw"></span><span class="win" style="right:1cqw;top:2cqw"></span><span class="win" style="left:1cqw;top:5cqw"></span><span class="win" style="right:1cqw;top:5cqw"></span></div></div>
+      <div class="house"><div class="roof" style="background:var(--ny2)"></div><div class="body" style="background:var(--ny2)"><span class="win" style="left:1cqw;top:2cqw"></span><span class="win" style="right:1cqw;top:2cqw"></span><span class="win" style="left:1cqw;top:5cqw"></span><span class="win" style="right:1cqw;top:5cqw"></span></div></div>
+      <div class="house"><div class="roof" style="background:var(--ny3)"></div><div class="body" style="background:var(--ny3)"><span class="win" style="left:1cqw;top:2cqw"></span><span class="win" style="right:1cqw;top:2cqw"></span><span class="win" style="left:1cqw;top:5cqw"></span><span class="win" style="right:1cqw;top:5cqw"></span></div></div>
+      <div class="house"><div class="roof" style="background:var(--ny5)"></div><div class="body" style="background:var(--ny5)"><span class="win" style="left:1cqw;top:2cqw"></span><span class="win" style="right:1cqw;top:2cqw"></span><span class="win" style="left:1cqw;top:5cqw"></span><span class="win" style="right:1cqw;top:5cqw"></span></div></div>
+      <div class="house"><div class="roof" style="background:var(--ny4)"></div><div class="body" style="background:var(--ny4)"><span class="win" style="left:1cqw;top:2cqw;background:rgba(9,4,70,.5)"></span><span class="win" style="right:1cqw;top:2cqw;background:rgba(9,4,70,.5)"></span></div></div>
+    </div>
+    <svg class="boat" viewBox="0 0 90 60" aria-hidden="true"><path d="M5 46 h70 l-8 10 h-54 z" fill="#c9c8ff"/><path d="M40 6 v38" stroke="#c9c8ff" stroke-width="2"/><path d="M40 10 L66 40 H40 z" fill="#5fb3ba"/><path d="M40 12 L18 40 H40 z" fill="#e05a3a"/></svg>
+    <div class="wrap">
+      <p class="eyebrow fade">Copenhagen Synergy · Copenhagen Capacity</p>
+      <h1 class="r d2">Copenhagen <em>Co-invest</em></h1>
+      <p class="lead r d4">Where local conviction meets foreign capital — and the City anchors the deal.</p>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 2 — three strengths ===== -->
+  <section class="scene" data-dur="15000" id="sc2">
+    <div class="wrap" style="justify-content:flex-start;padding-top:6cqw">
+      <p class="eyebrow fade">The opportunity</p>
+      <h2 class="r d1">Three strengths that never meet in one room</h2>
+    </div>
+    <div class="triad">
+      <div class="pillar r d2">
+        <svg class="ic" viewBox="0 0 48 48"><path d="M24 40 V22" stroke="#5fb3ba" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M24 24 C14 24 12 12 12 12 C22 12 24 20 24 24Z" fill="#5fb3ba"/><path d="M24 20 C34 20 36 10 36 10 C27 10 24 16 24 20Z" fill="#2B757C"/></svg>
+        <h3>Local seed investors</h3><p>Proprietary dealflow, founder trust, diligence on the ground.</p><span class="lack">Lack follow-on firepower</span>
+      </div>
+      <div class="gap">+</div>
+      <div class="pillar r d3">
+        <svg class="ic" viewBox="0 0 48 48"><circle cx="24" cy="24" r="14" fill="none" stroke="#5fb3ba" stroke-width="3"/><path d="M10 24 H38 M24 10 C30 16 30 32 24 38 C18 32 18 16 24 10" stroke="#5fb3ba" stroke-width="2" fill="none"/></svg>
+        <h3>Foreign investors</h3><p>Capital, sector depth, global scaling networks.</p><span class="lack">Lack local sourcing &amp; trust</span>
+      </div>
+      <div class="gap">+</div>
+      <div class="pillar r d4">
+        <svg class="ic" viewBox="0 0 48 48"><path d="M8 40 H40 M10 40 V20 L24 10 L38 20 V40" stroke="#5fb3ba" stroke-width="3" fill="none" stroke-linejoin="round"/><rect x="20" y="26" width="8" height="14" fill="#2B757C"/></svg>
+        <h3>Public sector</h3><p>Real innovation needs, testbeds, reference-customer credibility.</p><span class="lack">Lack a fast, compliant way in</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 3 — the bridge ===== -->
+  <section class="scene" data-dur="14000" id="sc3">
+    <svg class="bridgeSVG" viewBox="0 0 160 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <rect class="h2o" x="0" y="66" width="160" height="24"/>
+      <path class="ripple" d="M8 72 q 10 -3 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0"/>
+      <path class="ripple" d="M4 78 q 10 -3 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0" style="opacity:.18"/>
+      <line class="pier" x1="52" y1="56.4" x2="52" y2="74"/>
+      <line class="pier" x1="108" y1="56.4" x2="108" y2="74"/>
+      <path class="rail" d="M24 60 Q80 42 136 60"/>
+      <line class="post" x1="34" y1="61.1" x2="34" y2="57.1"/>
+      <line class="post" x1="46" y1="58.3" x2="46" y2="54.3"/>
+      <line class="post" x1="58" y1="56.4" x2="58" y2="52.4"/>
+      <line class="post" x1="70" y1="55.3" x2="70" y2="51.3"/>
+      <line class="post" x1="80" y1="55" x2="80" y2="51"/>
+      <line class="post" x1="90" y1="55.3" x2="90" y2="51.3"/>
+      <line class="post" x1="102" y1="56.4" x2="102" y2="52.4"/>
+      <line class="post" x1="114" y1="58.3" x2="114" y2="54.3"/>
+      <line class="post" x1="126" y1="61.1" x2="126" y2="57.1"/>
+      <path class="deck" d="M24 64 Q80 46 136 64"/>
+    </svg>
+    <span class="bankt l">Local conviction</span>
+    <span class="bankt r">Foreign capital</span>
+    <svg class="cyc" viewBox="0 0 60 40" aria-hidden="true"><circle cx="14" cy="30" r="8" fill="none" stroke="#f0b429" stroke-width="2.4"/><circle cx="46" cy="30" r="8" fill="none" stroke="#f0b429" stroke-width="2.4"/><path d="M14 30 L26 30 L36 18 L46 30 M26 30 L32 18 H40" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="34" cy="12" r="3.4" fill="#e05a3a"/></svg>
+    <div class="wrap" style="justify-content:flex-start;padding-top:6cqw">
+      <p class="eyebrow fade">The idea</p>
+      <h2 class="r d1" style="max-width:50cqw">Copenhagen Co-invest builds the bridge</h2>
+      <p class="lead r d3" style="max-width:60cqw">Curated opportunities, backed by a committed local lead — at a table the City convenes and curates.</p>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 4 — three-sided table ===== -->
+  <section class="scene" data-dur="15000" id="sc4">
+    <div class="wrap" style="justify-content:flex-start;padding-top:5cqw;z-index:3">
+      <p class="eyebrow fade">The model</p>
+    </div>
+    <div class="table4">
+      <svg class="spokes" viewBox="0 0 100 56" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="50" y1="26" x2="50" y2="12"/>
+        <line x1="50" y1="30" x2="16" y2="48"/>
+        <line x1="50" y1="30" x2="84" y2="48"/>
+      </svg>
+      <div class="node4 n1"><b>Local lead investor</b><span>Originates, co-leads, stays in</span></div>
+      <div class="node4 n2"><b>Foreign co-investors</b><span>Capital &amp; scaling networks</span></div>
+      <div class="node4 n3"><b>The City &amp; public</b><span>Convenes &amp; curates demand</span></div>
+      <div class="hub">
+        <svg class="spire" viewBox="0 0 40 40" style="width:5cqw;height:5cqw;margin-bottom:.4cqw" aria-hidden="true"><path d="M20 2 L24 26 H16 Z" fill="#fff"/><path d="M14 26 H26 L28 34 H12 Z" fill="#fff"/><circle cx="20" cy="2" r="1.6" fill="#f0b429"/></svg>
+        <div class="t">Copenhagen<br>Capacity</div>
+        <div class="s">curate · verify · convene</div>
+      </div>
+      <div class="note r d7">No orphan deals — every opportunity has a named local lead committed.</div>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 5 — journey ===== -->
+  <section class="scene" data-dur="16000" id="sc5">
+    <div class="wrap" style="justify-content:flex-start;padding-top:5cqw">
+      <p class="eyebrow fade">How it works</p>
+      <h2 class="r d1">Identify → Develop → Place → Grow</h2>
+    </div>
+    <div class="journey">
+      <div class="road"><div class="fill"></div></div>
+      <div class="stops">
+        <div class="stop" data-i="0"><div class="dot"></div><div class="n">01 Identify</div><h3>Sector sprints</h3><p>Surface companies with a local investor and a real city-demand angle.</p></div>
+        <div class="stop" data-i="1"><div class="dot"></div><div class="n">02 Develop</div><h3>The table</h3><p>CopCap convenes the lead, co-investors and the public demand owner.</p></div>
+        <div class="stop" data-i="2"><div class="dot"></div><div class="n">03 Place</div><h3>The round</h3><p>Investors structure it — side-by-side, SPV, pledge or direct.</p></div>
+        <div class="stop" data-i="3"><div class="dot"></div><div class="n">04 Grow</div><h3>Aftercare</h3><p>Soft-landing, talent and expansion — one deal into a lasting tie.</p></div>
+      </div>
+      <svg class="rider" viewBox="0 0 60 40" aria-hidden="true"><circle cx="14" cy="30" r="8" fill="none" stroke="#5fb3ba" stroke-width="2.4"/><circle cx="46" cy="30" r="8" fill="none" stroke="#5fb3ba" stroke-width="2.4"/><path d="M14 30 L26 30 L36 18 L46 30 M26 30 L32 18 H40" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="34" cy="12" r="3.4" fill="#f0b429"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 6 — neutral by design ===== -->
+  <section class="scene" data-dur="12000" id="sc6">
+    <svg class="skyline" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 16 V9 H4 V6 H6 V9 H10 V4 L12 2 L14 4 V9 H18 V7 H22 V9 H26 V5 H28 L29 2 L30 5 V9 H34 V8 H40 V3 H42 V8 H46 V6 H52 V9 H56 V5 H58 V2 H60 V5 H62 V9 H68 V7 H72 V9 H78 V4 L80 1 L82 4 V9 H86 V6 H90 V9 H94 V7 H100 V16 Z"/>
+      <rect class="lit" x="12" y="5" width="1" height="2"/><rect class="lit" x="41" y="5" width="1" height="2"/>
+      <rect class="lit" x="59" y="4" width="1" height="2"/><rect class="lit" x="80" y="3" width="1" height="2"/>
+    </svg>
+    <div class="neutral">
+      <div class="wrap" style="justify-content:flex-start;padding-top:5cqw">
+        <p class="eyebrow fade">Trust</p>
+        <h2 class="r d1">Neutral by design</h2>
+      </div>
+      <div class="checks">
+        <div class="check"><span class="mk"><svg viewBox="0 0 24 24"><path d="M4 13 l5 5 L20 5" fill="none" stroke="#5fb3ba" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>No fee on capital — ever</span></div>
+        <div class="check"><span class="mk"><svg viewBox="0 0 24 24"><path d="M4 13 l5 5 L20 5" fill="none" stroke="#5fb3ba" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Information parity for every investor</span></div>
+        <div class="check"><span class="mk"><svg viewBox="0 0 24 24"><path d="M4 13 l5 5 L20 5" fill="none" stroke="#5fb3ba" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>No board seats, no carry</span></div>
+        <div class="check"><span class="mk"><svg viewBox="0 0 24 24"><path d="M4 13 l5 5 L20 5" fill="none" stroke="#5fb3ba" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>A legal gate on every public instrument</span></div>
+      </div>
+      <p class="lead r d6" style="position:absolute;right:7cqw;bottom:4cqw;text-align:right;max-width:34cqw">The City convenes demand — it does not buy.</p>
+    </div>
+  </section>
+
+  <!-- ===== SCENE 7 — roadmap + end ===== -->
+  <section class="scene" data-dur="11000" id="sc7">
+    <div class="turbines">
+      <div class="turb t1"><div class="mast"></div><svg class="hub2" viewBox="0 0 40 40"><g fill="#c9c8ff"><path d="M20 20 L20 2 L22 20Z"/><path d="M20 20 L36 30 L19 22Z"/><path d="M20 20 L4 30 L21 22Z"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg></div>
+      <div class="turb t2"><div class="mast"></div><svg class="hub2" viewBox="0 0 40 40"><g fill="#5fb3ba"><path d="M20 20 L20 2 L22 20Z"/><path d="M20 20 L36 30 L19 22Z"/><path d="M20 20 L4 30 L21 22Z"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg></div>
+      <div class="turb t3"><div class="mast"></div><svg class="hub2" viewBox="0 0 40 40"><g fill="#c9c8ff"><path d="M20 20 L20 2 L22 20Z"/><path d="M20 20 L36 30 L19 22Z"/><path d="M20 20 L4 30 L21 22Z"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg></div>
+      <div class="turb t4"><div class="mast"></div><svg class="hub2" viewBox="0 0 40 40"><g fill="#5fb3ba"><path d="M20 20 L20 2 L22 20Z"/><path d="M20 20 L36 30 L19 22Z"/><path d="M20 20 L4 30 L21 22Z"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg></div>
+    </div>
+    <div class="wrap" style="justify-content:flex-start;padding-top:5cqw">
+      <p class="eyebrow fade">Roadmap</p>
+      <h2 class="r d1">From proof to platform</h2>
+    </div>
+    <div class="phases">
+      <span class="r d2"><b>Phase 1</b> · Proof</span><span class="r d3"><b>Phase 2</b> · Scale</span><span class="r d4"><b>Phase 3</b> · Platform</span>
+    </div>
+    <div class="endcard">
+      <svg viewBox="0 0 32 32" style="width:7cqw;height:7cqw;margin-bottom:2cqw" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15143a"/><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"/></svg>
+      <h2>Let's build the first table</h2>
+      <p class="kick">Local conviction · Foreign capital · A city that curates</p>
+      <p class="mail">llv@copcap.com</p>
+    </div>
+  </section>
+
+  <div class="progress" id="prog"></div>
+</div>
+
+<div class="bar">
+  <button id="replay">↻ Replay</button>
+  <button id="pause">❚❚ Pause</button>
+  <button id="clean">⛶ Hide controls (for recording)</button>
+</div>
+<p class="hint">Plays automatically (~90s). For a clean MP4: click <b>Hide controls</b>, then screen-record the stage. The browser scene is silent — the matching voiceover script is delivered separately. Press <b>Esc</b> or move the mouse to the stage to bring controls back.</p>
+
+<script>
+(function(){
+  if(location.search.indexOf('embed')>-1)document.body.classList.add('embed');
+  var stage=document.getElementById('stage');
+  var scenes=[].slice.call(document.querySelectorAll('.scene'));
+  var prog=document.getElementById('prog');
+  var scn=document.getElementById('scn');
+  var starts=[],total=0;
+  scenes.forEach(function(s){var d=+s.dataset.dur;starts.push(total);total+=d;});
+
+  var t0=performance.now(),paused=false,pauseStart=0,raf;
+  var journeyStops=[].slice.call(document.querySelectorAll('#sc5 .stop'));
+
+  function setScene(i){
+    scenes.forEach(function(s,j){s.classList.toggle('on',j===i);});
+    if(scn)scn.textContent=('0'+(i+1)).slice(-2)+' / 0'+scenes.length;
+  }
+
+  function frame(now){
+    if(paused){raf=requestAnimationFrame(frame);return;}
+    var e=now-t0;
+    if(e>=total){ // hold on final scene
+      setScene(scenes.length-1);prog.style.width='100%';
+      lightStops(1e9);return;
+    }
+    var idx=0;for(var i=0;i<starts.length;i++){if(e>=starts[i])idx=i;}
+    setScene(idx);
+    prog.style.width=(100*e/total).toFixed(2)+'%';
+    if(idx===4)lightStops(e-starts[4]);
+    raf=requestAnimationFrame(frame);
+  }
+
+  function lightStops(local){
+    // light each of 4 stops in turn across scene 5's duration
+    var step=15000/4;
+    journeyStops.forEach(function(st,k){st.classList.toggle('hot',local>=k*step);});
+  }
+
+  function restart(){
+    scenes.forEach(function(s){s.classList.remove('on');});
+    journeyStops.forEach(function(st){st.classList.remove('hot');});
+    void stage.offsetWidth; // reflow so animations can replay
+    t0=performance.now();paused=false;
+    document.getElementById('pause').textContent='❚❚ Pause';
+    cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);
+  }
+
+  document.getElementById('replay').addEventListener('click',restart);
+  document.getElementById('pause').addEventListener('click',function(){
+    paused=!paused;
+    if(paused){pauseStart=performance.now();this.textContent='▶ Play';}
+    else{t0+=performance.now()-pauseStart;this.textContent='❚❚ Pause';}
+  });
+  document.getElementById('clean').addEventListener('click',function(){
+    stage.classList.add('clean');
+  });
+  document.addEventListener('keydown',function(ev){if(ev.key==='Escape')stage.classList.remove('clean');});
+  stage.addEventListener('mousemove',function(){stage.classList.remove('clean');});
+
+  setScene(0);
+  raf=requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
