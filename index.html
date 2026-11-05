@@ -1,53 +1,144 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Copenhagen Synergy</title>
 <meta name="description" content="Tools and live information from Copenhagen Capacity, the investment promotion agency for Greater Copenhagen.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090446'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232B757C' stroke-width='4'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
-:root{--navy:#090446;--teal:#2B757C;--bg:#fff;--fg:#1b1b2f;--muted:#5d6070;--line:#e4e6ee;--card:#f6f7fb;--hero:#090446;--hero-fg:#fff;--hero-muted:#c9c8e6;--chip:#e6f1f2}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0c1f;--fg:#ecedf5;--muted:#a3a6ba;--line:#26264a;--card:#15143a;--navy:#c9c8ff;--teal:#5fb3ba;--hero:#15143a;--hero-muted:#a3a6ba;--chip:#1d3a3e}}
-:root[data-theme=dark]{--bg:#0d0c1f;--fg:#ecedf5;--muted:#a3a6ba;--line:#26264a;--card:#15143a;--navy:#c9c8ff;--teal:#5fb3ba;--hero:#15143a;--hero-muted:#a3a6ba;--chip:#1d3a3e}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Montserrat,system-ui,sans-serif}
-.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:'IBM Plex Serif',Georgia,serif;line-height:1.2;margin:0}
-header{background:var(--hero);color:var(--hero-fg)}
-header .wrap{padding-top:12px;padding-bottom:56px}
-nav.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px}
-nav.top a{color:var(--hero-muted);text-decoration:none;font-size:.88rem;font-weight:500}nav.top a:hover{color:#fff;text-decoration:underline}nav.top a[aria-current]{color:#fff;font-weight:600}
-nav.top .home{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem}nav.top .links{display:flex;gap:18px}
-header h1{font-size:clamp(2rem,5vw,3rem);margin:48px 0 12px;color:#fff}
-header p{max-width:640px;margin:0;color:var(--hero-muted);font-size:1.05rem}
-main .wrap{padding-top:40px;padding-bottom:64px}
-h2{font-size:1.3rem;color:var(--navy);margin:0 0 16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:inherit;text-decoration:none;transition:border-color .15s,transform .15s}
-a.card:hover{border-color:var(--teal);transform:translateY(-2px)}
-a.card:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-.card h3{font-size:1.15rem;color:var(--navy)}
-.card p{margin:0;color:var(--muted);font-size:.92rem}
-.card .go{margin-top:auto;padding-top:6px;font-weight:600;font-size:.9rem;color:var(--teal)}
-.card.soon{background:var(--card);border-style:dashed}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--teal)}
-.tag.live::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:currentColor;vertical-align:1px}
-.tag.muted{background:var(--line);color:var(--muted)}
-.about{margin-top:48px;padding:20px 22px;border-left:3px solid var(--teal);background:var(--card);border-radius:0 12px 12px 0}
-.about p{margin:0;color:var(--muted);font-size:.92rem}
-footer{border-top:1px solid var(--line)}
-footer .wrap{padding-top:20px;padding-bottom:32px;font-size:.8rem;color:var(--muted)}
-footer a{color:inherit}
+:root { --navy: #090446; --teal: #2B757C; --bg: #fff; --fg: #1b1b2f; --muted: #5d6070; --line: #e4e6ee; --card: #f6f7fb; --hero: #090446; --hero-fg: #fff; --hero-muted: #c9c8e6; --chip: #e6f1f2; }
+
+/* Proposed Experiments status colours (light) */
+:root { --st-proposed: #6b7280; --st-draft: #7c6f9c; --st-review: #b7791f; --st-selected: #2B757C; --st-progress: #2563eb; --st-launched: #15803d; --st-retired: #9aa0ad; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0d0c1f; --fg: #ecedf5; --muted: #a3a6ba; --line: #26264a; --card: #15143a; --navy: #c9c8ff; --teal: #5fb3ba; --hero: #15143a; --hero-muted: #a3a6ba; --chip: #1d3a3e; --st-proposed: #9ca3af; --st-draft: #b9abe6; --st-review: #e2ad52; --st-selected: #5fb3ba; --st-progress: #6ea8fe; --st-launched: #5bbf7a; --st-retired: #7c8191; }
+}
+
+:root[data-theme="dark"] { --bg: #0d0c1f; --fg: #ecedf5; --muted: #a3a6ba; --line: #26264a; --card: #15143a; --navy: #c9c8ff; --teal: #5fb3ba; --hero: #15143a; --hero-muted: #a3a6ba; --chip: #1d3a3e; --st-proposed: #9ca3af; --st-draft: #b9abe6; --st-review: #e2ad52; --st-selected: #5fb3ba; --st-progress: #6ea8fe; --st-launched: #5bbf7a; --st-retired: #7c8191; }
+
+* { box-sizing: border-box; }
+
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 Montserrat, system-ui, sans-serif; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+h1, h2, h3 { font-family: "IBM Plex Serif", Georgia, serif; line-height: 1.2; margin: 0; }
+
+header { background: var(--hero); color: var(--hero-fg); }
+
+header .wrap { padding-top: 12px; padding-bottom: 56px; }
+
+nav.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
+
+nav.top a { color: var(--hero-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; }
+
+nav.top a:hover { color: #fff; text-decoration: underline; }
+
+nav.top a[aria-current] { color: #fff; font-weight: 600; }
+
+nav.top .home { display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.82rem; }
+
+nav.top .links { display: flex; gap: 18px; }
+
+header h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 48px 0 12px; color: #fff; }
+
+header p { max-width: 640px; margin: 0; color: var(--hero-muted); font-size: 1.05rem; }
+
+main .wrap { padding-top: 40px; padding-bottom: 64px; }
+
+h2 { font-size: 1.3rem; color: var(--navy); margin: 0 0 16px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+.card { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: inherit; text-decoration: none; transition: border-color 0.15s, transform 0.15s; }
+
+a.card:hover { border-color: var(--teal); transform: translateY(-2px); }
+
+a.card:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+
+.card h3 { font-size: 1.15rem; color: var(--navy); }
+
+.card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+.card .go { margin-top: auto; padding-top: 6px; font-weight: 600; font-size: 0.9rem; color: var(--teal); }
+
+.card.soon { background: var(--card); border-style: dashed; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--chip); color: var(--teal); }
+
+.tag.live::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: currentColor; vertical-align: 1px; }
+
+.tag.muted { background: var(--line); color: var(--muted); }
+
+.about { margin-top: 48px; padding: 20px 22px; border-left: 3px solid var(--teal); background: var(--card); border-radius: 0 12px 12px 0; }
+
+.about p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+footer { border-top: 1px solid var(--line); }
+
+footer .wrap { padding-top: 20px; padding-bottom: 32px; font-size: 0.8rem; color: var(--muted); }
+
+footer a { color: inherit; }
+
+/* ── Proposed Experiments widget ─────────────────────────────── */
+.experiments { margin-top: 48px; }
+
+.experiments .exp-intro { max-width: 680px; margin: 0 0 18px; color: var(--muted); font-size: 0.92rem; }
+
+.exp-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+
+.exp { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 18px; border-top: 1px solid var(--line); background: var(--bg); }
+
+.exp:first-child { border-top: none; }
+
+.exp:nth-child(even) { background: var(--card); }
+
+.exp-title { font-weight: 600; color: var(--navy); font-size: 0.98rem; }
+
+.exp-num { display: inline-block; min-width: 1.4em; color: var(--teal); font-weight: 700; }
+
+.exp-note { display: block; font-weight: 400; color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
+
+.status { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; color: var(--c); background: color-mix(in srgb, var(--c) 14%, var(--bg)); border: 1px solid color-mix(in srgb, var(--c) 32%, transparent); }
+
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+
+.st-proposed { --c: var(--st-proposed); }
+.st-draft { --c: var(--st-draft); }
+.st-review { --c: var(--st-review); }
+.st-selected { --c: var(--st-selected); }
+.st-progress { --c: var(--st-progress); }
+.st-launched { --c: var(--st-launched); }
+.st-retired { --c: var(--st-retired); }
+
+.exp-legend { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 0 18px; }
+
+.exp-legend summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--navy); font-size: 0.9rem; font-family: "IBM Plex Serif", Georgia, serif; }
+
+.exp-legend summary::marker { color: var(--teal); }
+
+.exp-legend ul { list-style: none; margin: 0; padding: 0 0 16px; display: grid; gap: 10px; }
+
+.exp-legend li { display: flex; align-items: flex-start; gap: 12px; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+.exp-legend .status { margin-top: 1px; min-width: 112px; }
+
+@media (max-width: 560px) {
+  .exp { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .exp-legend li { flex-direction: column; gap: 4px; }
+}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-  <nav class="top" aria-label="Copenhagen Synergy"><a class="home" href="./"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".12"/><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"/></svg>Copenhagen Synergy</a>
-    <span class="links"><a href="./" aria-current="page">Home</a><a href="https://copenhagensynergy.github.io/copcap-events/">Events calendar</a></span></nav>
+  <nav class="top" aria-label="Copenhagen Synergy"><a class="home" href="https://copenhagensynergy.github.io/"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".12"></rect><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"></circle></svg>Copenhagen Synergy</a>
+    <span class="links"><a href="https://copenhagensynergy.github.io/" aria-current="page">Home</a><a href="https://copenhagensynergy.github.io/copcap-events/">Events calendar</a></span></nav>
   <h1>Copenhagen Synergy</h1>
   <p>Tools and live information from Copenhagen Capacity, the investment promotion agency for Greater Copenhagen. Maintained with the Copenhagen Synergy AI.</p>
 </div></header>
@@ -90,9 +181,73 @@ footer a{color:inherit}
     </div>
   </div>
 
-  <div class="about"><p>Copenhagen Capacity helps foreign companies set up and grow in Greater Copenhagen. Read more at <a href="https://www.copcap.com" style="color:var(--teal)">copcap.com</a>.</p></div>
+  <!-- ── Proposed Experiments widget ──────────────────────────────
+       To change an experiment's status, swap BOTH the class and the
+       label on its <span class="status ...">. Available statuses:
+         st-proposed  → Proposed
+         st-draft     → In Draft
+         st-review    → Under Review
+         st-selected  → Selected
+         st-progress  → In Progress
+         st-launched  → Launched
+         st-retired   → Retired
+       To add an experiment, copy an <li class="exp"> … </li> block. -->
+  <section class="experiments" aria-label="Proposed Experiments">
+    <h2>Proposed Experiments</h2>
+    <p class="exp-intro">Ideas raised for CopCap experiments and where each one currently stands. A fuller experimentation dashboard will follow in a separate build.</p>
+
+    <ol class="exp-list">
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">1.</span>Build Innovation Capability<span class="exp-note">incl. KPIs for monthly / quarterly / annual experiments that must be run</span></span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">2.</span>Work closer together across teams</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">3.</span>Creative, BIG ideas in Marketing</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">4.</span>Funding with less strings</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">5.</span>New structure in CopCap</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">6.</span>Company-focused events + networking vs. matchmaking</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">7.</span>Take a walk or swim</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+      <li class="exp">
+        <span class="exp-title"><span class="exp-num">8.</span>Ambassadors / network</span>
+        <span class="status st-proposed" title="Idea raised and added to the list; not yet worked on.">Proposed</span>
+      </li>
+    </ol>
+
+    <details class="exp-legend">
+      <summary>What the statuses mean</summary>
+      <ul>
+        <li><span class="status st-proposed">Proposed</span><span>Idea raised and added to the list; not yet worked on.</span></li>
+        <li><span class="status st-draft">In Draft</span><span>Being written up into a concrete experiment design.</span></li>
+        <li><span class="status st-review">Under Review</span><span>Drafted experiment is being assessed and prioritised.</span></li>
+        <li><span class="status st-selected">Selected</span><span>Approved to run — scheduled or awaiting kick-off.</span></li>
+        <li><span class="status st-progress">In Progress</span><span>Actively running as a live experiment.</span></li>
+        <li><span class="status st-launched">Launched</span><span>Proved out and rolled into regular operation.</span></li>
+        <li><span class="status st-retired">Retired</span><span>Stopped, parked, or discontinued.</span></li>
+      </ul>
+    </details>
+  </section>
+
+  <div class="about"><p>Copenhagen Capacity helps foreign companies set up and grow in Greater Copenhagen. Read more at <a href="https://www.copcap.com/" style="color:var(--teal)">copcap.com</a>.</p></div>
 </div></main>
 
-<footer><div class="wrap">Copenhagen Capacity · Havneholmen 29, DK-1561 Copenhagen V · <a href="https://www.copcap.com">copcap.com</a></div></footer>
-</body>
-</html>
+<footer><div class="wrap">Copenhagen Capacity · Havneholmen 29, DK-1561 Copenhagen V · <a href="https://www.copcap.com/">copcap.com</a></div></footer>
+
+</body></html>
