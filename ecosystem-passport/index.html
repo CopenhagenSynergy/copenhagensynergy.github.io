@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ecosystem Passport Copenhagen · Copenhagen Synergy</title>
+<meta name="description" content="Ecosystem Passport Copenhagen: a four-stage hybrid exploration and introduction programme from Copenhagen Capacity for international startups, mature businesses and investors who want to get connected in Denmark's innovation ecosystems.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090446'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232B757C' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,400;1,500&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root { --navy: #090446; --teal: #2B757C; --teal-lt: #5fb3ba; --orange: #EB5E28; --bg: #fff; --fg: #1b1b2f; --muted: #5d6070; --line: #e4e6ee; --card: #f6f7fb; --hero: #090446; --hero-fg: #fff; --hero-muted: #c9c8e6; --chip: #e6f1f2; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0d0c1f; --fg: #ecedf5; --muted: #a3a6ba; --line: #26264a; --card: #15143a; --navy: #c9c8ff; --teal: #5fb3ba; --hero: #15143a; --hero-muted: #a3a6ba; --chip: #1d3a3e; }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 Montserrat, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: "IBM Plex Serif", Georgia, serif; line-height: 1.18; margin: 0; font-weight: 600; }
+em { font-style: italic; font-weight: 400; }
+a { color: var(--teal); }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+/* header — same top bar as the Copenhagen Synergy home page */
+header { background: var(--hero); color: var(--hero-fg); overflow: hidden; }
+header .wrap { padding-top: 12px; padding-bottom: 64px; }
+nav.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
+nav.top a { color: var(--hero-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; }
+nav.top a:hover { color: #fff; text-decoration: underline; }
+nav.top .home { display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.82rem; }
+nav.top .links { display: flex; gap: 18px; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; margin-top: 48px; }
+.eyebrow { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hero-muted); margin: 0 0 14px; }
+.status-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; background: rgba(235, 94, 40, 0.16); color: #ffb08f; border: 1px solid rgba(235, 94, 40, 0.45); margin-left: 8px; vertical-align: 1px; }
+.status-pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); }
+header h1 { font-size: clamp(2.4rem, 6vw, 4rem); color: #fff; margin: 0 0 18px; }
+.lede { font-size: 1.12rem; color: #fff; max-width: 560px; margin: 0 0 28px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 0.92rem; text-decoration: none; min-height: 44px; }
+.btn.primary { background: #fff; color: #090446; }
+.btn.primary:hover { background: #e6f1f2; }
+.btn.ghost { color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); }
+.btn.ghost:hover { border-color: #fff; }
+
+/* passport stamps */
+.stamps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 420px; justify-self: center; }
+.stamp { aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--ring); box-shadow: inset 0 0 0 7px var(--hero), inset 0 0 0 8px var(--ring); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-align: center; color: #fff; padding: 12px; text-decoration: none; transition: transform 0.15s; }
+.stamp:nth-child(1) { transform: rotate(-6deg); --ring: #fff; }
+.stamp:nth-child(2) { transform: rotate(5deg) translateY(-10px); --ring: var(--teal-lt); }
+.stamp:nth-child(3) { transform: rotate(4deg); --ring: var(--orange); }
+.stamp:nth-child(4) { transform: rotate(-4deg) translateY(-10px); --ring: #fff; }
+.stamp:hover { transform: rotate(0) scale(1.03); }
+.stamp .s-no { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; }
+.stamp .s-word { font-family: "IBM Plex Serif", Georgia, serif; font-style: italic; font-size: clamp(1.3rem, 2.6vw, 1.75rem); line-height: 1; }
+.stamp .s-rule { width: 42%; border-top: 1px solid var(--ring); }
+.stamp .s-sub { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.16em; opacity: 0.9; }
+
+/* main */
+main section { padding: 64px 0; border-top: 1px solid var(--line); }
+main section:first-child { border-top: none; }
+main section.alt { background: var(--card); }
+.kicker { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin: 0 0 10px; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); color: var(--navy); margin: 0 0 14px; }
+.intro { max-width: 720px; color: var(--muted); margin: 0 0 32px; font-size: 1.02rem; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.card h3 { font-size: 1.2rem; color: var(--navy); margin: 0 0 10px; }
+.card p { margin: 0; color: var(--muted); font-size: 0.94rem; }
+.card ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.92rem; }
+.card li + li { margin-top: 4px; }
+
+/* stages */
+.stages { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.stage { display: grid; grid-template-columns: 112px minmax(0, 1fr) minmax(0, 220px); gap: 24px; align-items: start; padding: 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.stage .badge { width: 96px; height: 96px; border-radius: 50%; border: 2px solid var(--ring, var(--navy)); box-shadow: inset 0 0 0 6px var(--bg), inset 0 0 0 7px var(--ring, var(--navy)); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--navy); }
+.stage .badge b { font-family: "IBM Plex Serif", Georgia, serif; font-size: 1.7rem; line-height: 1; }
+.stage .badge span { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; }
+.stage:nth-child(2) .badge { --ring: var(--teal); }
+.stage:nth-child(3) .badge { --ring: var(--orange); }
+.stage h3 { font-size: 1.45rem; color: var(--navy); margin: 0 0 4px; }
+.stage .where { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin: 0 0 10px; }
+.stage p { margin: 0 0 10px; color: var(--muted); }
+.stage ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.94rem; }
+.stage li + li { margin-top: 4px; }
+.stage .out { font-size: 0.86rem; background: var(--card); border-radius: 10px; padding: 14px 16px; color: var(--fg); }
+.stage .out b { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+
+/* matchmaking flow */
+.flow { list-style: none; margin: 0 0 28px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; counter-reset: f; }
+.flow li { position: relative; padding: 20px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); counter-increment: f; }
+.flow li::before { content: counter(f); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--bg); font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; }
+.flow h3 { font-family: Montserrat, system-ui, sans-serif; font-size: 1rem; color: var(--navy); margin: 0 0 6px; }
+.flow p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.note { border-left: 3px solid var(--teal); background: var(--bg); border-radius: 0 12px 12px 0; padding: 16px 20px; color: var(--muted); font-size: 0.92rem; margin: 0 0 14px; }
+.note b { color: var(--fg); }
+.atlas-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 24px; border-radius: 12px; background: var(--hero); color: #fff; margin-top: 24px; }
+.atlas-cta p { margin: 0; max-width: 620px; color: var(--hero-muted); font-size: 0.94rem; }
+.atlas-cta strong { color: #fff; display: block; font-family: "IBM Plex Serif", Georgia, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; }
+
+/* clusters */
+.clusters { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; list-style: none; margin: 0 0 12px; padding: 0; }
+.clusters li { padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font-size: 0.9rem; background: var(--bg); }
+.clusters li b { display: block; color: var(--navy); font-weight: 600; }
+.clusters li span { color: var(--muted); font-size: 0.8rem; }
+.clusters li.in { border-color: var(--teal); }
+.clusters li.in span { color: var(--teal); font-weight: 600; }
+.src { font-size: 0.78rem; color: var(--muted); margin: 0; }
+
+/* practical */
+.links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.links-grid a { display: block; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit; background: var(--bg); transition: border-color 0.15s; }
+.links-grid a:hover { border-color: var(--teal); }
+.links-grid a:focus-visible, .btn:focus-visible, .stamp:focus-visible { outline: 3px solid var(--teal-lt); outline-offset: 3px; }
+.links-grid b { display: block; color: var(--navy); margin-bottom: 4px; }
+.links-grid span { color: var(--muted); font-size: 0.88rem; }
+.links-grid em { display: block; font-style: normal; color: var(--teal); font-size: 0.8rem; font-weight: 600; margin-top: 8px; }
+
+.status-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.status-box div { padding: 18px 20px; border-radius: 12px; border: 1px dashed var(--line); background: var(--bg); }
+.status-box b { display: block; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+.status-box span { color: var(--muted); font-size: 0.92rem; }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-top: 20px; padding-bottom: 32px; font-size: 0.8rem; color: var(--muted); }
+footer a { color: inherit; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .stamps { max-width: 340px; justify-self: start; }
+  .stage { grid-template-columns: 1fr; gap: 14px; }
+  .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) { .flow { grid-template-columns: 1fr; } .stamps { gap: 12px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .stamp { transition: none; } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <nav class="top" aria-label="Copenhagen Synergy"><a class="home" href="https://copenhagensynergy.github.io/"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".12"></rect><circle cx="16" cy="16" r="7" fill="none" stroke="#5fb3ba" stroke-width="4"></circle></svg>Copenhagen Synergy</a>
+    <span class="links"><a href="https://copenhagensynergy.github.io/">Home</a><a href="https://copenhagensynergy.github.io/copcap-events/">Events calendar</a></span></nav>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">A Copenhagen Capacity programme <span class="status-pill">In preparation</span></p>
+      <h1>Ecosystem <em>Passport</em> Copenhagen</h1>
+      <p class="lede">A four-stage exploration and introduction programme for international startups, mature businesses and investors who want to get connected in Denmark's innovation ecosystems. Online and in person, over a few weeks.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#stages">See the four stages</a>
+        <a class="btn ghost" href="#matchmaking">How matchmaking works</a>
+      </div>
+    </div>
+    <div class="stamps" aria-label="The four stages">
+      <a class="stamp" href="#stage-1"><span class="s-no">STAGE 01</span><span class="s-word">Explore</span><span class="s-rule"></span><span class="s-sub">ONLINE</span></a>
+      <a class="stamp" href="#stage-2"><span class="s-no">STAGE 02</span><span class="s-word">Connect</span><span class="s-rule"></span><span class="s-sub">ECOSYSTEM</span></a>
+      <a class="stamp" href="#stage-3"><span class="s-no">STAGE 03</span><span class="s-word">Visit</span><span class="s-rule"></span><span class="s-sub">COPENHAGEN</span></a>
+      <a class="stamp" href="#stage-4"><span class="s-no">STAGE 04</span><span class="s-word">Establish</span><span class="s-rule"></span><span class="s-sub">DENMARK</span></a>
+    </div>
+  </div>
+</div></header>
+
+<main>
+  <section id="who"><div class="wrap">
+    <p class="kicker">Who it is for</p>
+    <h2>Three kinds of participant, one route in</h2>
+    <p class="intro">Each participant gets a passport: a personal route through Denmark's ecosystems. Every stage adds a stamp: new knowledge, new contacts, a step closer to a decision.</p>
+    <div class="grid3">
+      <div class="card">
+        <h3>International startups</h3>
+        <p>Founders weighing Denmark as a first market or base in Europe.</p>
+        <ul><li>First customers and pilot partners</li><li>Incubators, accelerators and research partners</li><li>Investors active in their field</li></ul>
+      </div>
+      <div class="card">
+        <h3>Mature businesses</h3>
+        <p>Established companies considering a Danish office, R&amp;D site or regional hub.</p>
+        <ul><li>Industry partners, suppliers and customers</li><li>Universities and technology institutes</li><li>Municipalities and public agencies</li></ul>
+      </div>
+      <div class="card">
+        <h3>Investors</h3>
+        <p>Funds, family offices and corporate investors looking at Danish technology.</p>
+        <ul><li>Companies in their investment focus</li><li>Danish co-investors and funds</li><li>Clusters that show where activity is</li></ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="stages" class="alt"><div class="wrap">
+    <p class="kicker">The programme</p>
+    <h2>Four stages, from first look to first office</h2>
+    <p class="intro">Stages 1 and 2 run online, so participants arrive in Denmark knowing who they will meet and why. Stage 3 is the visit. Stage 4 turns the decision into practical steps.</p>
+    <ol class="stages">
+      <li class="stage" id="stage-1">
+        <div class="badge" aria-hidden="true"><span>STAGE</span><b>01</b></div>
+        <div>
+          <h3>Explore</h3>
+          <p class="where">Online</p>
+          <p>Onboarding and a guided introduction to how Denmark's innovation ecosystems are organised.</p>
+          <ul>
+            <li>Participant profile: what you do, what you want to achieve in Denmark, who you want to meet</li>
+            <li>Online sessions on the national innovation clusters, research environments and capital landscape</li>
+            <li>A first look at the practical routes: company set-up, work permits and talent</li>
+          </ul>
+        </div>
+        <div class="out"><b>Stamp earned</b>A completed profile, ready for matchmaking.</div>
+      </li>
+      <li class="stage" id="stage-2">
+        <div class="badge" aria-hidden="true"><span>STAGE</span><b>02</b></div>
+        <div>
+          <h3>Connect</h3>
+          <p class="where">Online · matched introductions</p>
+          <p>The profile is matched against the members of Danish ecosystems in the <a href="#matchmaking">Danish Ecosystem Atlas</a>. A CopCap specialist checks every suggestion before anyone is contacted.</p>
+          <ul>
+            <li>A shortlist of relevant organisations, each with the reason it was suggested</li>
+            <li>Introductions only where both sides agree</li>
+            <li>First online conversations before anyone travels</li>
+          </ul>
+        </div>
+        <div class="out"><b>Stamp earned</b>Agreed introductions and a meeting plan for the visit.</div>
+      </li>
+      <li class="stage" id="stage-3">
+        <div class="badge" aria-hidden="true"><span>STAGE</span><b>03</b></div>
+        <div>
+          <h3>Visit</h3>
+          <p class="where">In person · Greater Copenhagen and Denmark</p>
+          <p>A tailor-made visit programme built around the introductions from Stage 2.</p>
+          <ul>
+            <li>Meetings with matched companies, investors, researchers and public partners</li>
+            <li>Visits to clusters, innovation hubs and test facilities</li>
+            <li>Business events in the <a href="https://copenhagensynergy.github.io/copcap-events/">Eastern Denmark events calendar</a>, where the timing fits</li>
+          </ul>
+        </div>
+        <div class="out"><b>Stamp earned</b>A first-hand view of the ecosystem and a network on the ground.</div>
+      </li>
+      <li class="stage" id="stage-4">
+        <div class="badge" aria-hidden="true"><span>STAGE</span><b>04</b></div>
+        <div>
+          <h3>Establish</h3>
+          <p class="where">Practical steps · with Copenhagen Capacity</p>
+          <p>For participants ready to move: CopCap's set-up services, from location choice to the first hires.</p>
+          <ul>
+            <li>Location benchmarking and set-up advice</li>
+            <li>Finance introductions and the sustainability network</li>
+            <li>Talent attraction and recruitment support</li>
+            <li>Continued support after the company has established</li>
+          </ul>
+        </div>
+        <div class="out"><b>Stamp earned</b>A plan for establishing or expanding in Denmark, or a well-informed "not yet".</div>
+      </li>
+    </ol>
+  </div></section>
+
+  <section id="matchmaking"><div class="wrap">
+    <p class="kicker">Matchmaking before introductions</p>
+    <h2>Linked to the Danish Ecosystem Atlas</h2>
+    <p class="intro">Before any introduction, each participant is matched against the members of Danish ecosystems recorded in the Danish Ecosystem Atlas. Stage 2 therefore starts from a reasoned shortlist rather than from a general network.</p>
+    <ol class="flow">
+      <li><h3>Profile</h3><p>What the participant does, their value-chain position, preferred location, and the kinds of organisation they want to meet.</p></li>
+      <li><h3>Match</h3><p>The Atlas ranks ecosystem members and shows why each one fits: shared focus words, the same value-chain stage, location.</p></li>
+      <li><h3>Review</h3><p>A CopCap specialist checks every suggestion, removes poor fits and adds context the data cannot show.</p></li>
+      <li><h3>Introduce</h3><p>Introductions are made only when both sides agree, online first and then during the visit.</p></li>
+    </ol>
+    <p class="note"><b>Coverage today.</b> The Atlas currently holds one ecosystem: the 502 members of Energy Cluster Denmark, taken from the cluster's own member list. Location, stakeholder type and value-chain stage are added automatically and may need review. More of Denmark's national clusters will be added over time.</p>
+    <p class="note"><b>Confidentiality.</b> Participant profiles are never published on this site. The matching in the Atlas runs in the browser and saves nothing. Copenhagen Capacity's services are confidential.</p>
+    <div class="atlas-cta">
+      <p><strong>Try the matching</strong>Open the Atlas and choose the <b>Passport match</b> tab. Describe a company and see which ecosystem members it would be introduced to, and why.</p>
+      <a class="btn primary" href="https://claude.ai/artifact/Tq3frCWp1iDwe1eZUSPhmY" target="_blank" rel="noopener">Open the Ecosystem Atlas →</a>
+    </div>
+  </div></section>
+
+  <section id="ecosystems" class="alt"><div class="wrap">
+    <p class="kicker">The ecosystems</p>
+    <h2>Denmark's national innovation clusters</h2>
+    <p class="intro">Denmark has 11 national innovation clusters for 2025–2028. Ten of them have their headquarters or an office in Greater Copenhagen; Odense Robotics is the exception. The Passport draws on them to find the right people in each field.</p>
+    <ul class="clusters">
+      <li class="in"><b>Energy Cluster Denmark</b><span>In the Atlas today</span></li>
+      <li><b>Food &amp; Bio Cluster Denmark</b><span>HQ Aarhus</span></li>
+      <li><b>Odense Robotics</b><span>HQ Odense</span></li>
+      <li><b>CLEAN</b><span>HQ Sønderborg</span></li>
+      <li><b>We Build Denmark</b><span>HQ Albertslund</span></li>
+      <li><b>MADE</b><span>HQ Copenhagen</span></li>
+      <li><b>Danish Life Science Cluster</b><span>HQ Copenhagen</span></li>
+      <li><b>DigitalLead</b><span>Aalborg, Aarhus, Copenhagen</span></li>
+      <li><b>CenSec</b><span>HQ Viborg</span></li>
+      <li><b>Copenhagen Fintech</b><span>HQ Copenhagen</span></li>
+      <li><b>Lifestyle &amp; Design Cluster</b><span>HQ Herning</span></li>
+    </ul>
+    <p class="src">Source: Danmarks Erhvervsfremmebestyrelse, national innovation clusters 2025–2028 (14 May 2025); headquarters from each cluster's own website (checked 25 Sep 2026). Energy Cluster Denmark's HQ is in Sønderborg, with an office in Copenhagen at BLOXHUB.</p>
+  </div></section>
+
+  <section id="practical"><div class="wrap">
+    <p class="kicker">Practical steps</p>
+    <h2>Establishing in Denmark: where to start</h2>
+    <p class="intro">Stage 4 builds on Copenhagen Capacity's business services, which are free for foreign-owned companies and come with full confidentiality. The official sources are linked below.</p>
+    <div class="links-grid">
+      <a href="https://www.copcap.com/business-services" target="_blank" rel="noopener"><b>Copenhagen Capacity business services</b><span>Benchmarking, setting up, finance, network, sustainability and talent.</span><em>copcap.com →</em></a>
+      <a href="https://virk.dk/" target="_blank" rel="noopener"><b>Register a company</b><span>Denmark's business portal, Virk, for registering a company and reporting to the authorities.</span><em>virk.dk →</em></a>
+      <a href="https://www.nyidanmark.dk/en-GB" target="_blank" rel="noopener"><b>Work and residence permits</b><span>The official portal for permit schemes and how to apply.</span><em>nyidanmark.dk →</em></a>
+      <a href="https://www.startupdenmark.info/" target="_blank" rel="noopener"><b>Start-up Denmark</b><span>The residence scheme for non-EU founders with an innovative business plan.</span><em>startupdenmark.info →</em></a>
+      <a href="https://ihcph.kk.dk/" target="_blank" rel="noopener"><b>International House Copenhagen</b><span>One-stop registration services and support for international newcomers.</span><em>ihcph.kk.dk →</em></a>
+    </div>
+  </div></section>
+
+  <section id="status" class="alt"><div class="wrap">
+    <p class="kicker">Status</p>
+    <h2>The programme is in preparation</h2>
+    <p class="intro">The details of the first round will be published here.</p>
+    <div class="status-box">
+      <div><b>Dates</b><span>To be announced</span></div>
+      <div><b>Who can apply</b><span>International startups, mature businesses and investors. Criteria to be announced</span></div>
+      <div><b>Format</b><span>Hybrid: online stages 1–2, a visit to Denmark in stage 3, follow-up in stage 4</span></div>
+      <div><b>Contact</b><span>Copenhagen Capacity via <a href="https://www.copcap.com/">copcap.com</a></span></div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">Copenhagen Capacity · Havneholmen 29, DK-1561 Copenhagen V · <a href="https://www.copcap.com/">copcap.com</a></div></footer>
+</body>
+</html>
